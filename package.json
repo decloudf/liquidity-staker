@@ -21,8 +21,10 @@
     "prepublishOnly": "yarn test"
   },
   "dependencies": {
+    "@openzeppelin/contracts": "^2.5.1",
     "@truffle/hdwallet-provider": "^1.1.1",
-    "openzeppelin-solidity-2.3.0": "npm:openzeppelin-solidity@2.3.0"
+    "dayjs": "^1.9.3",
+    "truffle-plugin-verify": "^0.4.0"
   },
   "devDependencies": {
     "@types/chai": "^4.2.12",

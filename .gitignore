@@ -1,3 +1,4 @@
 node_modules/
 build/
 config/deploy_data.js
+.DS_Store

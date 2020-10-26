@@ -6,7 +6,7 @@ const dayjs = require('dayjs')
 module.exports = async function(deployer, network) {
   const web3Accounts = await web3.eth.getAccounts()
   const accounts = await getDeployAccounts(network, web3Accounts)
-  const start = dayjs('2020-10-20T07:10:00.000Z')
+  const start = dayjs('2020-10-22T08:10:00.000Z')
   await deployer.deploy(StakingRewardsFactory, CrustTaskToken.address, start.unix());
   const rewardInstance = await StakingRewardsFactory.deployed();
   //

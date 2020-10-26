@@ -6,6 +6,15 @@ import "@openzeppelin/contracts/ownership/Ownable.sol";
 import "@openzeppelin/contracts/math/SafeMath.sol";
 
 contract CrustTaskToken is ERC20, Ownable {
+  event ClaimCRUT(address indexed _address, uint256 _value, bytes32 pubKey);
+
+  mapping (address => bool) private _blockedAccounts;
+
+  modifier notBlocked() {
+    require(!isBlocked(msg.sender), "CrustTaskToken: account is blocked");
+    _;
+  }
+
   function name() public pure returns (string memory) {
     return "CrustTask";
   }
@@ -28,5 +37,51 @@ contract CrustTaskToken is ERC20, Ownable {
 
   function getBalance(address account) public view returns (uint256) {
     return balanceOf(account);
+  }
+
+  function transfer(address recipient, uint256 amount) public notBlocked returns (bool) {
+    super._transfer(msg.sender, recipient, amount);
+    return true;
+  }
+
+  // disable approvie/transferFrom functions
+  function approve(address , uint256 ) public returns (bool) {
+    require(false, "not supported");
+    return false;
+  }
+
+  function transferFrom(address , address , uint256 ) public returns (bool) {
+    require(false, "not supported");
+    return false;
+  }
+
+  function isBlocked(address account) public view returns (bool) {
+    return _blockedAccounts[account];
+  }
+
+  function setBlock(address account, bool blocked) public onlyOwner returns (bool) {
+    _blockedAccounts[account] = blocked;
+    return true;
+  }
+
+  //
+  // claim token
+  function claim(uint amount, bytes32 pubKey) public notBlocked {
+    _claim(msg.sender, amount, pubKey);
+  }
+
+  //
+  // claim all token in the account
+  function claimAll(bytes32 pubKey) public notBlocked {
+    uint256 amount = getBalance(msg.sender);
+    _claim(msg.sender, amount, pubKey);
+  }
+
+  function _claim(address account, uint amount, bytes32 pubKey) private {
+    require(amount > 0, "claim amount should not be zero");
+    require(pubKey != bytes32(0), "Failed to provide an Ed25519 or SR25519 public key.");
+
+    _burn(account, amount);
+    emit ClaimCRUT(account, amount, pubKey);
   }
 }

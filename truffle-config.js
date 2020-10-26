@@ -1,5 +1,5 @@
 const HDWalletProvider = require('@truffle/hdwallet-provider')
-const { mnemonic, infuraKey } = require('./config/deploy_data')
+const { mnemonic, infuraKey, etherscan } = require('./config/deploy_data')
 
 module.exports = {
   compilers: {
@@ -11,7 +11,7 @@ module.exports = {
     'truffle-plugin-verify'
   ],
   api_keys: {
-    etherscan: ''
+    etherscan,
   },
   // Uncommenting the defaults below
   // provides for an easier quick-start with Ganache.

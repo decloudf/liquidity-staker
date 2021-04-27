@@ -74,4 +74,15 @@ contract StakingRewardsFactory is Ownable {
             StakingRewards(info.stakingRewards).notifyRewardAmount(rewardAmount);
         }
     }
+
+  function withdraw(IERC20 token) public onlyOwner returns (bool) {
+    token.transfer(msg.sender, token.balanceOf(address(this)));
+    return true;
+  }
+
+  function withdrawEth() public onlyOwner returns (bool) {
+      require(address(this).balance > 0, "withdraw eth require greater than 0 balance");
+      msg.sender.transfer(address(this).balance);
+      return true;
+  }
 }

@@ -16,11 +16,11 @@ contract CrustTaskToken is ERC20, Ownable {
   }
 
   function name() public pure returns (string memory) {
-    return "CrustTask";
+    return "Crust Storage Market";
   }
 
   function symbol() public pure returns (string memory) {
-    return "CRUT";
+    return "CSM";
   }
 
   function decimals() public pure returns (uint8) {
@@ -42,17 +42,6 @@ contract CrustTaskToken is ERC20, Ownable {
   function transfer(address recipient, uint256 amount) public notBlocked returns (bool) {
     super._transfer(msg.sender, recipient, amount);
     return true;
-  }
-
-  // disable approvie/transferFrom functions
-  function approve(address , uint256 ) public returns (bool) {
-    require(false, "not supported");
-    return false;
-  }
-
-  function transferFrom(address , address , uint256 ) public returns (bool) {
-    require(false, "not supported");
-    return false;
   }
 
   function isBlocked(address account) public view returns (bool) {

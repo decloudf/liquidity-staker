@@ -1,0 +1,36 @@
+
+
+1.  csm
+
+2. 批量转账 - 四个管理账号
+
+0x055449E436B48E6Fb71861A7f130382E750ecA05
+0xF56225Ad716f4Fb6F25820ff22F1B512B19e04af
+0x1851CbB368C7c49B997064086dA94dBAD90eB9b5
+0x909bA6382f55947b9b803D9D019aeaf5218bb445
+
+
+主网合约地址:
+0xb964bDcf25dEA43b9Fd0550D4f8b55585A539764
+
+3. cru18 - 重新部署一个新版本
+  支持让批量转账合约调用
+
+  a. 支持批量合约转账
+  b. 支持以下地址进行转账
+     0x055449E436B48E6Fb71861A7f130382E750ecA05
+     0xF56225Ad716f4Fb6F25820ff22F1B512B19e04af
+     0x1851CbB368C7c49B997064086dA94dBAD90eB9b5
+     0x909bA6382f55947b9b803D9D019aeaf5218bb445
+
+4. 水龙头
+  a. 转推的链接
+  b. CRU账号(eth)
+  需要验证账户中是否有cru余额
+
+
+bear token:
+
+AAAAAAAAAAAAAAAAAAAAAKprJwEAAAAA5M7%2BG552i08OAtmviQ1BDjWppqI%3DdR6tpvM8g2yIr6ioM9sMO1hAC6wPNn53A3QktFeqCOmFh1xh7J
+
+CREATE TABLE rewards ( username varchar(30) NOT NULL, userid varchar(50), address varchar(50) not null, tweet_id text not null, create_at text default CURRENT_TIMESTAMP, last_update text default CURRENT_TIMESTAMP, unique(userid), unique(tweet_id), unique(address)) ;
